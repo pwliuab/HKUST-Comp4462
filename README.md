@@ -9,14 +9,22 @@
  - Dev ID: Paul_branch
  - responsible for web construction including backend and frontend
 ```
-### 2. lv(Liu Pak Wai)
+### 2. ()
 ```
  - Email: 
  - Github: 
  - Dev ID: 
  - responsible for 
 ```
-### 3. (,  )
+### 3. (  )
+```
+ - Email: hyyeungaf@connect.ust.hk
+ - Github: Andy9934
+ - Dev ID: andy_feature1
+ - responsible for task 2 and task 5
+```
+***
+### 4. (  )
 ```
  - Email: hyyeungaf@connect.ust.hk
  - Github: Andy9934
