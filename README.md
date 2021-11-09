@@ -18,18 +18,18 @@
 ```
 ### 3. (  )
 ```
- - Email: hyyeungaf@connect.ust.hk
- - Github: Andy9934
- - Dev ID: andy_feature1
- - responsible for task 2 and task 5
+ - Email: @connect.ust.hk
+ - Github: 
+ - Dev ID: 
+ - responsible for 
 ```
 ***
 ### 4. (  )
 ```
- - Email: hyyeungaf@connect.ust.hk
- - Github: Andy9934
- - Dev ID: andy_feature1
- - responsible for task 2 and task 5
+ - Email: @connect.ust.hk
+ - Github: 
+ - Dev ID: 
+ - responsible for 
 ```
 ***
 ### Environment Setup:
