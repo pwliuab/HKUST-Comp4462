@@ -36,6 +36,7 @@
 ```
 - OS : Windows 
 - IDE : atom
+- data preprocessing : python
 - front-end : react-js, D3-js ( installation of node js )-> (command of installing react: npx create-react-app my-app)
 - back-end : node.js 
 - database : SQL database (localhost : XAMPP)
