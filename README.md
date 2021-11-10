@@ -47,7 +47,8 @@
 - [X] frontend environment set-up
 - [x] work division 
 ### Task todo before 14 / 11
-- [ ] data preprocessing of race bar chart 
+- [ ] data preprocessing of race bar chart (dataset : 2021 Tokyo Olympics Dataset (Information of Medals),Countries of the World Dataset (Information of different countries),120 Years of Olympic History Dataset (Historical Data)
+
 - [ ] data preprocessing of parallel chart
 - [ ] data preprocessing of heatMap
 - [ ] data visualization of heatMap
