@@ -37,6 +37,8 @@
 - OS : Windows 
 - IDE : atom
 - data preprocessing : python
+(dataset : 2021 Tokyo Olympics Dataset (Information of Medals),Countries of the World Dataset (Information of different countries),120 Years of Olympic History Dataset (Historical Data))
+
 - front-end : react-js, D3-js ( installation of node js )-> (command of installing react: npx create-react-app my-app)
 - back-end : node.js 
 - database : SQL database (localhost : XAMPP)
@@ -47,8 +49,7 @@
 - [X] frontend environment set-up
 - [x] work division 
 ### Task todo before 14 / 11
-- [ ] data preprocessing of race bar chart (dataset : 2021 Tokyo Olympics Dataset (Information of Medals),Countries of the World Dataset (Information of different countries),120 Years of Olympic History Dataset (Historical Data)
-
+- [ ] data preprocessing of race bar chart
 - [ ] data preprocessing of parallel chart
 - [ ] data preprocessing of heatMap
 - [ ] data visualization of heatMap
