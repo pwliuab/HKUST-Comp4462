@@ -19,7 +19,8 @@ function BBTimeline({ data, highlight }) {
 
     const minDate = min(data, episode => getDate(episode.air_date));
     const maxDate = max(data, episode => getDate(episode.air_date));
-
+    console.log(minDate);
+    console.log(maxDate);
     const xScale = scaleTime()
       .domain([minDate, maxDate])
       .range([0, dimensions.width]);
