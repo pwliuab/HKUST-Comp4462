@@ -16,12 +16,12 @@
  - Dev ID: 
  - responsible for 
 ```
-### 3. (  )
+### 3. yliugt (LIU Yuzhi)
 ```
- - Email: @connect.ust.hk
- - Github: 
+ - Email: yliugt@connect.ust.hk
+ - Github: yliugt
  - Dev ID: 
- - responsible for 
+ - responsible for partI Analysis--relationship of countries' performance and its economic factors
 ```
 ***
 ### 4. (  )
