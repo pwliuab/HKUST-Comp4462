@@ -9,10 +9,10 @@
  - Dev ID: Paul_branch
  - responsible for web construction including backend and frontend
 ```
-### 2. ()
+### 2. lvvv-318 (LV Zhiyuan)
 ```
- - Email: 
- - Github: 
+ - Email: zlv@connect.ust.hk
+ - Github: lvvv-318
  - Dev ID: 
  - responsible for 
 ```
@@ -51,7 +51,7 @@
 ### Task todo before 14 / 11
 - [ ] data preprocessing of race bar chart
 - [ ] data preprocessing of parallel chart
-- [ ] data preprocessing of heatMap
+- [x] data preprocessing of heatMap
 - [ ] data visualization of heatMap
 - [ ] data visualization of race bar chart
 - [ ] data visualization of parallel chart
