@@ -50,7 +50,7 @@
 - [x] work division 
 ### Task todo before 14 / 11
 - [ ] data preprocessing of race bar chart
-- [ ] data preprocessing of parallel chart
+- [x] data preprocessing of parallel chart
 - [x] data preprocessing of heatMap
 - [ ] data visualization of heatMap
 - [ ] data visualization of race bar chart
