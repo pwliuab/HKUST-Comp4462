@@ -24,12 +24,12 @@
  - responsible for partI Analysis--relationship of countries' performance and its economic factors
 ```
 ***
-### 4. (  )
+### 4. ( yhouaj(HOU Yating)
 ```
- - Email: @connect.ust.hk
- - Github: 
- - Dev ID: 
- - responsible for 
+ - Email: yhouaj@connect.ust.hk
+ - Github: yhouaj
+ - Dev ID: yolo_branch
+ - responsible for part I & II Analysis - trend of total medal and trend of sports-wise comparsion
 ```
 ***
 ### Environment Setup:
