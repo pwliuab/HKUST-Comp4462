@@ -24,7 +24,7 @@
  - responsible for partI Analysis--relationship of countries' performance and its economic factors
 ```
 ***
-### 4. ( yhouaj(HOU Yating)
+### 4. yhouaj (HOU Yating)
 ```
  - Email: yhouaj@connect.ust.hk
  - Github: yhouaj
