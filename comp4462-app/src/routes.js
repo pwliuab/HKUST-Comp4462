@@ -2,6 +2,8 @@ import { Books, Electronics, Mobile, Desktop, Laptop } from './testing';
 import MainRaceBarChart from './components/MainRaceBarChart';
 import HeatMap from './components/HeatMap';
 import ParallelGraph from './components/ParallelGraph';
+import BubbleChart from './components/BubbleChart';
+import DotPlot from './components/DotPlot';
 const rootPath = process.env.PUBLIC_URL;
 
 const routes = [
@@ -42,6 +44,16 @@ const routes = [
     path:`${rootPath}/ParallelGraph`,
     component: ParallelGraph,
     breadcrumbName: 'ParallelGraph'
+  },
+  {
+    path:`${rootPath}/BubbleChart`,
+    component: BubbleChart,
+    breadcrumbName: 'BubbleChart'
+  },
+  {
+    path:`${rootPath}/DotPlot`,
+    component: DotPlot,
+    breadcrumbName: 'DotPlot'
   },
 ];
 

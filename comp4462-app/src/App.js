@@ -1,12 +1,18 @@
 import './App.css';
 import { renderRoutes } from 'react-router-config';
 import routes from './routes';
+import { IconButton } from '@material-ui/core';
 
 
 function App() {
   return (
     <div>
-    
+    <div class="topnav" style={{position:'absolute',top:0,left:0, width:"106%"}}>
+      <a class="active" href="ParallelGraph">Parallel coordinate</a>
+      <a href="#news">Bubble Chart</a>
+      <a href="#contact">Dot Graph</a>
+      <a href="#about">Heat Map</a>
+    </div>
     {renderRoutes(routes)}
     </div>
   );
