@@ -11,7 +11,7 @@ function RacingBarChart({ data }) {
   useEffect(() => {
     const svg = select(svgRef.current);
     if (!dimensions) return;
-
+    
     // sorting the data
     data.sort((a, b) => b.value - a.value);
 
@@ -59,7 +59,7 @@ function RacingBarChart({ data }) {
   }, [data, dimensions]);
 
   return (
-    <div ref={wrapperRef} style={{ marginBottom: "2rem" }}>
+    <div ref={wrapperRef} style={{ marginBottom: "2rem"}}>
       <svg ref={svgRef}></svg>
     </div>
   );

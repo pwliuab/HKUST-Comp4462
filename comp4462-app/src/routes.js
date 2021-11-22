@@ -1,6 +1,7 @@
 import { Books, Electronics, Mobile, Desktop, Laptop } from './testing';
 import MainRaceBarChart from './components/MainRaceBarChart';
 import HeatMap from './components/HeatMap';
+import ParallelGraph from './components/ParallelGraph';
 const rootPath = process.env.PUBLIC_URL;
 
 const routes = [
@@ -36,6 +37,11 @@ const routes = [
     path:`${rootPath}/heatMap`,
     component: HeatMap,
     breadcrumbName: 'heatMap'
+  },
+  {
+    path:`${rootPath}/ParallelGraph`,
+    component: ParallelGraph,
+    breadcrumbName: 'ParallelGraph'
   },
 ];
 

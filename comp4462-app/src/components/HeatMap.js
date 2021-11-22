@@ -45,6 +45,7 @@ class HeatMap extends React.Component {
       const chart = d3.select('.chart')
         .attr('width', width + margins.right + margins.left)
         .attr('height', height + margins.top + margins.bottom)
+        .attr("overflow", "scroll")
         .append('g')
         .attr('transform','translate(' + margins.left + ',' + margins.top + ')');
 
@@ -144,7 +145,7 @@ class HeatMap extends React.Component {
     return(
       <div className='container'>
         <h1>Monthly Global Land-Surface Temperature</h1>
-        <svg className='chart'></svg>
+        <svg className='chart' style={{height:"300"}}></svg>
       </div>
     );
   }
