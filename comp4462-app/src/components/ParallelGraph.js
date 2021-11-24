@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import {event} from 'd3';
 import { Slider } from 'material-ui-slider';
 import d3Tip from 'd3-tip'
+import BubbleChart from './BubbleChart';
 const axios = require('axios').default;
 
 class ParallelGraph extends React.Component {
@@ -22,7 +23,7 @@ class ParallelGraph extends React.Component {
     // remove svg before drawing svg , prevent repeating drawing.
     d3.selectAll('svg').remove();
     d3.selectAll('.line').remove();
-
+    d3.selectAll('.tooltip').remove();
     const svg = d3.select(this.refs.testing)
                   .append('svg')
                   .attr('width', 1000)
@@ -86,6 +87,7 @@ class ParallelGraph extends React.Component {
       //.style('border', 'solid 3px black')
       .style('background-color', '#5F9EA0')
       .style('border-radius', '2px')
+      .attr('class','tooltip')
       //.style('float', 'left')
       .style('color','white')
       .style('position','left')
@@ -251,6 +253,7 @@ class ParallelGraph extends React.Component {
         .on('click',clickevent)
         .on("mouseleave.text", tooltip.hide)
         .on("mouseleave.line", doNotHighlight)
+
         return(
           <svg ref={this.myRef} style={{height:500, width:1000}} />
         );
@@ -288,7 +291,7 @@ class ParallelGraph extends React.Component {
     return(
         <div style={{position:"relative", top:20}}>
         <div style={{position:"relative", top:-100}} ref="testing"/>
-      <div style={{position:"relative", top:300}}>
+      <div style={{position:"relative", top:500}}>
         <Slider
           aria-label="Temperature"
           defaultValue={1984}
@@ -297,10 +300,10 @@ class ParallelGraph extends React.Component {
           min={1984}
           max={1993}
         />
+        Parallel Graph selected year: <span style={{color:'green', fontWeight:'bold'}}>{this.state.current}</span>
        </div>
-       <div style={{position:"relative",top:270}}>
-        selected year : {this.state.current}
-       </div>
+
+       <BubbleChart/>
       </div>
     );
   }

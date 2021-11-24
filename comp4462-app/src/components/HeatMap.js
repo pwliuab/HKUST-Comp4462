@@ -1,151 +1,243 @@
+
 import React from "react";
 import * as d3 from "d3";
 import {event} from 'd3';
-const axios = require('axios').default;
-
+import { Slider } from 'material-ui-slider';
+import d3Tip from 'd3-tip';
+import DotPlot from './DotPlot';
 class HeatMap extends React.Component {
+
   constructor(props) {
     super(props);
+    this.state = {
+      data: [],
+      current: 1984,
+      previous: 0,
+    }
+
   }
+  renderGraph(data){
+      // d3.selectAll('svg').remove();
+      var margin = {top: 80, right: 45, bottom: 30, left: 80},
+        width = 1700 - margin.left - margin.right,
+        height = 450 - margin.top - margin.bottom;
+  // append the svg object to the body of the page
+      const svg = d3.select(this.refs.heatmap)
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom + 50);
 
+      svg.append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+
+                // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
+                var myGroups = d3.map(data, function(d){return d.year;})
+                var myVars = d3.map(data, function(d){return d.sex;})
+                console.log("hi");
+                // Build X scales and axis:
+                var x = d3.scaleBand()
+                  .range([ 0,width ])
+                  .domain(myGroups)
+                  .padding(0.05);
+                svg.append("g")
+                  .style("font-size", 15)
+                  .attr("transform", "translate(0," + height + ")")
+                  .call(d3.axisBottom(x).tickSize(0))
+                  .select(".domain").remove()
+                // Build Y scales and axis:
+                console.log(x);
+                var y = d3.scaleBand()
+                  .range([height,0 ])
+                  .domain(myVars)
+                  .padding(0.05);
+                svg.append("g")
+                  .style("font-size", 15)
+                  .attr('id', "y-axis")
+                  .call(d3.axisLeft(y).tickSize(0))
+                  .select(".domain").remove()
+              // change svg text color
+                var y_text = document.getElementById('y-axis')
+                y_text.childNodes[0].childNodes[1].setAttribute('fill','pink');
+                y_text.childNodes[0].childNodes[1].setAttribute('font-weight','bold');
+                y_text.childNodes[1].childNodes[1].setAttribute('fill','blue');
+                y_text.childNodes[1].childNodes[1].setAttribute('font-weight','bold');
+                // Build color scale
+                var myColor = d3.scaleSequential()
+                  .interpolator(d3.interpolateViridis)
+                  .domain([19,55])
+                // create a tooltip
+
+                var Femalecolors = d3.scaleQuantize()
+                  .domain([20,55])
+                  .range(["#7CFC00	", "#32CD32	", "#228B22", "#ABDDA4", "#008000",
+                  "#006400"]);
+
+                var tooltip = d3.select(this.refs.heatmap)
+                  .append("div")
+                  .style("opacity", 0)
+                  .attr("class", "tooltip")
+                  .style("background-color", "white")
+                  .style("border", "solid")
+                  .style("border-width", "2px")
+                  .style("border-radius", "5px")
+                  .style("padding", "5px")
+                  .style("position","absolute")
+                  .style("height","500")
+                  .style("width","1000")
+
+
+                // Three function that change the tooltip when user hover / move / leave a cell
+                var mouseover = function(d) {
+                  tooltip
+                    .style("opacity", 1)
+                  d3.select(this)
+                    .style("stroke", "black")
+                    .style("opacity", 1)
+                }
+                var mousemove = function(event,d) {
+                  if(d.sex == "M"){
+                    tooltip
+                      .html("The median ages of <span style='color:blue'>Male</span><br> in " + '<span style="color:green">' + d.year.toString() + "</span> is: <b>" + d.median_age + "</b>")
+                      .style("left", x(d.year) + "px")
+                      .style("top",  -height/6 + "px")
+                  } else {
+                    tooltip
+                      .html("The median ages of <span style='color:#e75480'>Female</span><br> in " + '<span style="color:green">'+d.year.toString() + "</span> is: <b>" + d.median_age + "</b>")
+                      .style("left", x(d.year) + "px")
+                      .style("top", height + 50 + "px")
+                  }
+
+                }
+                var mouseleave = function(d) {
+                  tooltip
+                    .style("opacity", 0)
+                  d3.select(this)
+                    .style("stroke", "none")
+                    .style("opacity", 0.8)
+                }
+
+
+                // add the squares
+                svg.selectAll()
+                  .data(data, function(d) {return d.year+':'+d.median_age;})
+                  .enter()
+                  .append("rect")
+                    .attr("x", function(d) { return x(d.year) })
+                    .attr("y", function(d) { return y(d.sex) })
+                    .attr("rx", 4)
+                    .attr("ry", 4)
+                    .attr("width", x.bandwidth() )
+                    .attr("height", y.bandwidth() )
+                    .style("fill", function(d) {
+                      // if(d.sex == 'F'){
+                      //   return Femalecolors(d.median_age);
+                      // }
+                      if(d.median_age == 55){
+                        return 'red'
+                      }
+                      return myColor(74 - d.median_age)
+                    })
+                    .style("stroke-width", 4)
+                    .style("stroke", "none")
+                    .style("opacity", 0.8)
+                  .on("mouseover", mouseover)
+                  .on("mousemove", mousemove)
+                  .on("mouseleave", mouseleave);
+
+                  svg.selectAll()
+                  .data(data, function(d) {return d.year+':'+d.median_age;})
+                  .enter()
+                  .append("text")
+                    .attr("x", function(d) { return x(d.year) + x.bandwidth()/4 })
+                    .attr("y", function(d) { return y(d.sex) + y.bandwidth()/2 })
+                    .attr("rx", 4)
+                    .attr("ry", 4)
+                    .attr("width", x.bandwidth() )
+                    .attr("height", y.bandwidth() )
+                    .style("fill", function(d) {
+                      if(d.median_age >= 50){
+                        return 'white';
+                      } else if(d.median_age >= 25){
+                        return '#0059FF'
+                      }
+                      return 'black'
+                    } )
+                    .style("stroke-width", 4)
+                    .style("stroke", "none")
+                    .style("opacity", 0.8)
+                  .on("mouseover", mouseover)
+                  .on("mousemove", mousemove)
+                  .on("mouseleave", mouseleave)
+                  .text(function(d) {return d.median_age})
+
+                  // Add title to graph
+                  svg.append("text")
+                          .attr("x", 0)
+                          .attr("y", -50)
+                          .attr("text-anchor", "left")
+                          .style("font-size", "22px")
+                          .text("Median Ages of Medal winners among 120 years");
+
+                  // Add subtitle to graph
+                  svg.append("text")
+                          .attr("x", -10)
+                          .attr("y", -20)
+                          .attr("text-anchor", "left")
+                          .style("font-size", "14px")
+                          .style("fill", "grey")
+                          .style("max-width", 400)
+                          .text("Separate female and male to find the golden age of each gender");
+
+                          svg.append("text")
+                          .attr('transform', 'translate(0,200) rotate(90), scale(-1)')
+                                  .attr("x", 0)
+                                  .attr("y", -20)
+                                  .attr("text-anchor", "left")
+                                  .style("font-size", "50px")
+                                  .style("fill", "grey")
+                                  .style("font-weight", "bold")
+                                  .style("max-width", 400)
+                                  .text("Sex");
+                                  svg.append("text")
+                                  .attr('transform', 'translate(700,425)')
+                                          .attr("x", 0)
+                                          .attr("y", -20)
+                                          .attr("text-anchor", "left")
+                                          .style("font-size", "50px")
+                                          .style("fill", "grey")
+                                          .style("font-weight", "bold")
+                                          .style("max-width", 400)
+                                          .text("year");
+
+
+
+  }
   componentDidMount() {
-    const url = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json';
+    var currentbtn = document.getElementById('htmap');
+    var activeBtn = document.getElementsByClassName('active');
+    console.log(activeBtn);
+    for(var i = 0; i < activeBtn.length; i++){
+      if(activeBtn[i] != currentbtn) activeBtn[i].className = ' ';
+    }
+    currentbtn.className = 'active';
+    d3.csv("https://raw.githubusercontent.com/pwliuab/comp4462Data/main/separateSex.csv", function(Resdata) {
+      return Resdata;
+    }).then(
+    (Resdata)=>{
+      this.renderGraph(Resdata);
+    }
+    );
 
-    axios.get(url).then( res => {
-
-      const data = res.data.monthlyVariance,
-            baseTemperature = res.data.baseTemperature,
-            yearRange = d3.extent(data, d => {return d.year; });
-
-      const legendData = [
-        {'interval': 2.7, 'color': 'purple'},
-        {'interval': 3.9, 'color': 'darkorchid'},
-        {'interval': 6.1, 'color': 'mediumpurple'},
-        {'interval': 7.2, 'color': 'lightskyblue'},
-        {'interval': 8.3, 'color': 'khaki'},
-        {'interval': 9.4, 'color': 'orange'},
-        {'interval': 10.5, 'color': 'salmon'},
-        {'interval': 11.6, 'color': 'indianred'},
-        {'interval': 15,'color': 'darkred'}
-      ];
-
-      const width = 917,
-            height = 408,
-            margins = {top:20, right: 50, bottom: 100, left: 100};
-
-      const yScale = d3.scaleLinear()
-        .range([height,0])
-        .domain([12,0]);
-
-      const xScale = d3.scaleLinear()
-        .range([0,width])
-        .domain(d3.extent(data, d => {return d.year; }));
-
-      //Setting chart width and adjusting for margins
-      const chart = d3.select('.chart')
-        .attr('width', width + margins.right + margins.left)
-        .attr('height', height + margins.top + margins.bottom)
-        .attr("overflow", "scroll")
-        .append('g')
-        .attr('transform','translate(' + margins.left + ',' + margins.top + ')');
-
-      const tooltip = d3.select('.container').append('div')
-        .attr('class','tooltip')
-        .html('Tooltip')
-
-      const barWidth = width / (yearRange[1] - yearRange[0]),
-            barHeight = height / 12;
-
-      //Return dynamic color based on intervals in legendData
-      const colorScale = d => {
-        for (let i = 0; i < legendData.length; i++) {
-          if (d.variance + baseTemperature < legendData[i].interval) {
-            return legendData[i].color;
-          }
-        }
-        return 'darkred';
-      };
-
-      //Return abbreviate month string from month decimal
-      const timeParseFormat = d => {
-        if (d === 0) return '';
-        return d3.timeFormat('%b')(d3.timeParse('%m')(d));
-      };
-
-      //Append heatmap bars, styles, and mouse events
-      chart.selectAll('g')
-        .data(data).enter().append('g')
-        .append('rect')
-        .attr('x', d => {return (d.year - yearRange[0]) * barWidth})
-        .attr('y', d => {return (d.month - 1) * barHeight})
-        .style('fill', colorScale)
-        .attr('width', barWidth)
-        .attr('height', barHeight)
-        .on('mouseover', (event,d) => {
-          tooltip.html(timeParseFormat(d.month) + ' ' + d.year + '<br/>' +
-            d3.format('.4r')(baseTemperature + d.variance) + ' &degC<br/>' + d.variance + ' &degC' )
-            .style('left', event.pageX - 35 + 'px')
-            .style('top',  event.pageY - 73 + 'px')
-            .style('opacity', 0.9)
-            .style('background-color', "lightgrey")
-            .style('width', "80px")
-            .style('padding','5px')
-            .style('position','absolute')
-        }).on('mouseout', () => {
-          tooltip.style('opacity', 0)
-            .style('left', '0px');
-        });
-
-      //Append x axis
-      chart.append('g')
-        .attr('transform','translate(0,' + height + ')')
-        .call(d3.axisBottom(xScale).tickFormat(d3.format('.4')));
-
-      //Append y axis
-      chart.append('g')
-        .attr('transform','translate(0,-' + barHeight / 2 + ')')
-        .call(d3.axisLeft(yScale).tickFormat(timeParseFormat))
-        .attr('class','yAxis');
-
-      //Append y axis label
-      chart.append('text')
-        .attr('transform','translate(-40,' + (height / 2)  + ') rotate(-90)')
-        .style('text-anchor','middle')
-        .text('Month');
-
-      //Append x axis label
-      chart.append('text')
-        .attr('transform','translate(' + (width / 2) + ',' + (height + 40) + ')')
-        .style('text-anchor','middle')
-        .text('Year');
-
-      //Append color legend using legendData
-      chart.append('g')
-        .selectAll('g')
-        .data(legendData).enter()
-        .append('rect')
-        .attr('width', 30)
-        .attr('height', 20)
-        .attr('x', (d, i) => { return i * 30 + width * .7;})
-        .attr('y', height + margins.top)
-        .style('fill', d => { return d.color; });
-
-      //Append text labels for legend from legendData
-      chart.append('g')
-        .selectAll('text')
-        .data(legendData).enter().append('text')
-        .attr('x', (d,i) => {return i * 30 + width * .7})
-        .attr('y', height + margins.top * 3)
-        .text(d => {return d.interval; });
-
-    });
   }
 
   render() {
+    // {this.renderParallelGraph(this.state.data)}
+
     return(
-      <div className='container'>
-        <h1>Monthly Global Land-Surface Temperature</h1>
-        <svg className='chart' style={{height:"300"}}></svg>
+        <div>
+        <div style = {{height:1000,position:'relative', top:1500, left:200}} ref="heatmap"/>
+        <DotPlot/>
       </div>
     );
   }

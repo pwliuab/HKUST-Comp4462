@@ -103,6 +103,13 @@ class DotPlot extends React.Component {
           .style("fill", "skyblue");
   }
   componentDidMount() {
+    // var currentbtn = document.getElementById('dpg');
+    // var activeBtn = document.getElementsByClassName('active');
+    // console.log(activeBtn);
+    // for(var i = 0; i < activeBtn.length; i++){
+    //   if(activeBtn[i] != currentbtn) activeBtn[i].className = ' ';
+    // }
+    // currentbtn.className = 'active';
     d3.csv("https://raw.githubusercontent.com/lvvv-318/DotPlotCsvFile/main/result.csv", function(Resdata) {
       return Resdata;
     }).then(

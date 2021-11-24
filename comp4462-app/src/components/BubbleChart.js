@@ -3,7 +3,8 @@ import * as d3 from "d3";
 import {event} from 'd3';
 import { Slider } from 'material-ui-slider';
 import d3Tip from 'd3-tip';
-import './bbc.css'
+import './bbc.css';
+
 const axios = require('axios').default;
 
 class BubbleChart extends React.Component {
@@ -19,6 +20,8 @@ class BubbleChart extends React.Component {
     // clean the screen before the update of the graph
     d3.selectAll('svg').remove();
     d3.selectAll('circles').remove();
+    d3.selectAll('.tooltip').remove();
+
     // filter data to show specific year of data
     const data=this.state.data.filter(d=>d.Year===selectedYear)
     const margin = { left: 100, top: 100, right: 50, bottom: 20 }
@@ -62,6 +65,7 @@ class BubbleChart extends React.Component {
     .style('border-radius', '10px')
     .style('float', 'left')
     .style('color','white')
+    .attr("class",'tooltip')
     //.style('font-family', 'monospace')
     .html((event, d) => `
       <div style='float: right'>
@@ -90,6 +94,13 @@ class BubbleChart extends React.Component {
 
   }
   componentDidMount() {
+    // var currentbtn = document.getElementById('bc');
+    // var activeBtn = document.getElementsByClassName('active');
+    // console.log(activeBtn);
+    // for(var i = 0; i < activeBtn.length; i++){
+    //   if(activeBtn[i] != currentbtn) activeBtn[i].className = ' ';
+    // }
+    // currentbtn.className = 'active';
     const url = 'https://raw.githubusercontent.com/yliugt/4462/main/olympic.json';
     axios.get(url).then( res => {
       this.setState({data:res.data});
@@ -117,10 +128,26 @@ class BubbleChart extends React.Component {
   }
   render() {
     // {this.renderParallelGraph(this.state.data)}
+  //   <div style={{position:"relative", top:20}}>
+  //   <div style={{position:"relative", top:-100}} ref="bubble"/>
+  // <div style={{position:"relative", top:300}}>
+  //   <Slider
+  //     aria-label="Temperature"
+  //     defaultValue={1984}
+  //     valueLabelDisplay="auto"
+  //     onChange ={this.handleChange}
+  //     min={1984}
+  //     max={1993}
+  //   />
+  //  </div>
+  //  <div style={{position:"relative",top:270}}>
+  //   selected year : {this.state.current}
+  //  </div>
+  // </div>
 
     return(
         <div style={{position:"relative", top:20}}>
-        <div style={{position:"relative", top:-100}} ref="bubble"/>
+        <div style={{position:"relative", top:-300}} ref="bubble"/>
       <div style={{position:"relative", top:300}}>
         <Slider
           aria-label="Temperature"
@@ -130,10 +157,9 @@ class BubbleChart extends React.Component {
           min={1984}
           max={1993}
         />
+        Bubble Chart selected year : <span style={{color:'green', fontWeight:'bold'}}>{this.state.current}</span>
        </div>
-       <div style={{position:"relative",top:270}}>
-        selected year : {this.state.current}
-       </div>
+
       </div>
     );
   }

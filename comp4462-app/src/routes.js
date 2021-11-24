@@ -4,6 +4,8 @@ import HeatMap from './components/HeatMap';
 import ParallelGraph from './components/ParallelGraph';
 import BubbleChart from './components/BubbleChart';
 import DotPlot from './components/DotPlot';
+import RBarC from './components/RBarC'
+import Hosting from './components/Hosting'
 const rootPath = process.env.PUBLIC_URL;
 
 const routes = [
@@ -54,6 +56,16 @@ const routes = [
     path:`${rootPath}/DotPlot`,
     component: DotPlot,
     breadcrumbName: 'DotPlot'
+  },
+  {
+    path:`${rootPath}/RBarC`,
+    component: RBarC,
+    breadcrumbName: 'RBarC'
+  },
+  {
+    path:`${rootPath}/Hosting`,
+    component: Hosting,
+    breadcrumbName: 'Hosting'
   },
 ];
 
