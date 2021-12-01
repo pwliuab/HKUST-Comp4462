@@ -138,7 +138,7 @@ d3.csv("https://raw.githubusercontent.com/pwliuab/comp4462Data/main/seperateMeda
         // if(d.sex == 'F'){
         //   return Femalecolors(d.median_age);
         // }
-        return myColor(d.median_age)
+        return myColor(74 - d.median_age)
       })
       .style("stroke-width", 4)
       .style("stroke", "none")
@@ -161,9 +161,9 @@ d3.csv("https://raw.githubusercontent.com/pwliuab/comp4462Data/main/seperateMeda
         if(d.median_age >= 50){
           return 'red';
         } else if(d.median_age >= 25){
-          return 'yellow'
+          return 'red'
         }
-        return 'white'
+        return 'black'
       } )
       .style("stroke-width", 4)
       .style("stroke", "none")
