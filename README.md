@@ -46,6 +46,12 @@
 - back-end : node.js 
 - database : mongo db
 ```
+### Introduction:
+```
+- front-end : Paul_branch -> comp4462-app [ commmand: npm install -> npm start ] 
+- back-end : node.js -> get csv files -> send json back to client side [ support get post and put ]
+- database : mongo db {we have setted it up , it can be used if deployment is needed}
+```
 ### Task todo before 01/11
 - [x] Readme.md and team repository
 - [X] backend environment set-up
