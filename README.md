@@ -8,6 +8,8 @@
  - Github: pwliuab
  - Dev ID: Paul_branch
  - responsible for web construction including backend and frontend
+ - node.js, react.js and D3.js integration
+ - heatmap drawing using D3.js
 ```
 ### 2. lvvv-318 (LV Zhiyuan)
 ```
