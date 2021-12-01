@@ -10,6 +10,7 @@
  - responsible for web construction including backend and frontend
  - node.js, react.js and D3.js integration
  - heatmap drawing using D3.js
+ - data preprocessing using python pandas https://colab.research.google.com/drive/1HnLGZdriaiNi9juI7g-VdcquSlBKkpgR
 ```
 ### 2. lvvv-318 (LV Zhiyuan)
 ```
