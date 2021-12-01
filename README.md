@@ -39,12 +39,12 @@
 ```
 - OS : Windows 
 - IDE : atom
-- data preprocessing : python
+- data preprocessing : python -> pandas 
 (dataset : 2021 Tokyo Olympics Dataset (Information of Medals),Countries of the World Dataset (Information of different countries),120 Years of Olympic History Dataset (Historical Data))
 
 - front-end : react-js, D3-js ( installation of node js )-> (command of installing react: npx create-react-app my-app)
 - back-end : node.js 
-- database : SQL database (localhost : XAMPP)
+- database : mongo db
 ```
 ### Task todo before 01/11
 - [x] Readme.md and team repository
@@ -52,12 +52,12 @@
 - [X] frontend environment set-up
 - [x] work division 
 ### Task todo before 14 / 11
-- [ ] data preprocessing of race bar chart
-- [ ] data preprocessing of parallel chart
+- [x] data preprocessing of race bar chart
+- [x] data preprocessing of parallel chart
 - [x] data preprocessing of heatMap
-- [ ] data visualization of heatMap
-- [ ] data visualization of race bar chart
-- [ ] data visualization of parallel chart
+- [x] data visualization of heatMap
+- [x] data visualization of race bar chart
+- [x] data visualization of parallel chart
 - [ ] Documentation of coding  
  ### User Guide :
 - To be done
