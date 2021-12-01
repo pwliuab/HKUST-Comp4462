@@ -17,11 +17,18 @@ app.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', ['*']);
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.append('Access-Control-Allow-Headers', 'Conent-Type');
+    res.append('Access-Control-Allow-Headers', '*');
     res.append('Access-Control-Expose-Headers', 'Content-Range');
     res.append('Content-Range','posts 0-20/20')
 
     next();
 });
+/////////////////////////////////////////////////
+// Database connection
+////////////////////////////////////////////////
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/';
+const databaseName = "Comp4462Project";
 /////////////////////////////////////////////////
 ///////     parse json format
 ////////////////////////////////////////////////
@@ -129,6 +136,92 @@ app.get('/population',(req,res)=>{
         var result_code = {result_code:200, data: results};
         res.status(200).send(JSON.stringify(result_code));
       })
+});
+
+///////////////////////////////////////////////////////////////////////////
+//  variable to be customized below
+//////////////////////////////////////////////////////////////////////////
+var collectionName_1 = "Olympics";
+var urlName_1 = '/Olympics/';
+////////////////////////////////////////////////////////////
+app.get(urlName_1,(req,res)=>{
+  MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      console.log("--Get posts url connected successfully--");
+      var dbo = db.db(databaseName);
+      // db seraching information
+      dbo.collection(collectionName_1). find({}).toArray(function(err, result) { // get all the data from the database
+          if (err) throw err;
+          console.log(result.length);
+          if(!err){
+            console.log("--Get posts database connected successfully--");
+            res.status(200).send(result);
+            console.log(result);
+            if(result.length == 0){
+              console.log("no record");
+            }
+          } else {
+            res.status(500).send(err);
+          }
+          db.close();
+      });
+  });
+});
+///////////////////////////////////////////////////////////////////////////
+//  variable to be customized below
+//////////////////////////////////////////////////////////////////////////
+var collectionName_3 = "GoldenAge";
+var urlName_3 = '/GoldenAge/';
+////////////////////////////////////////////////////////////
+app.get(urlName_3,(req,res)=>{
+  MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      console.log("--Get posts url connected successfully--");
+      var dbo = db.db(databaseName);
+      // db seraching information
+      dbo.collection(collectionName_3). find({}).toArray(function(err, result) { // get all the data from the database
+          if (err) throw err;
+          if(!err){
+            console.log("--Get posts database connected successfully--");
+            res.status(200).send(result);
+            console.log(result);
+            if(result.length == 0){
+              console.log("no record");
+            }
+          } else {
+            res.status(500).send(err);
+          }
+          db.close();
+      });
+  });
+});
+///////////////////////////////////////////////////////////////////////////
+//  variable to be customized below
+//////////////////////////////////////////////////////////////////////////
+var collectionName_2 = "Hosting";
+var urlName_2 = '/Hosting/';
+////////////////////////////////////////////////////////////
+app.get(urlName_2,(req,res)=>{
+  MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      console.log("--Get posts url connected successfully--");
+      var dbo = db.db(databaseName);
+      // db seraching information
+      dbo.collection(collectionName_2). find({}).toArray(function(err, result) { // get all the data from the database
+          if (err) throw err;
+          if(!err){
+            console.log("--Get posts database connected successfully--");
+            res.status(200).send(result);
+            console.log(result);
+            if(result.length == 0){
+              console.log("no record");
+            }
+          } else {
+            res.status(500).send(err);
+          }
+          db.close();
+      });
+  });
 });
 
 
