@@ -10,8 +10,8 @@ function App() {
     <div>
 
     <div class="topnav" style={{position:'absolute',top:0,left:0, width:"106%"}}>
-      <a class="active" href="ParallelGraph">Overview</a>
-      <a id='rbc' href="RBarC">Countrywise Analysis</a>
+      <a class="active" href="Overview">Overview</a>
+      <a id='CountryWise' href="CountryWise">Countrywise Analysis</a>
       <a id='htmap' href="heatmap">Golden Age Analysis</a>
 
     </div>

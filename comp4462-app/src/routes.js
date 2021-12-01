@@ -8,6 +8,8 @@ import RBarC from './components/RBarC';
 import Hosting from './components/Hosting';
 import ParallelGraphAdt from './components/ParallelGraphAdt';
 import ParallelGraphPop from './components/ParallelGraphPop';
+import CountryWise from './components/CountryWise';
+import ParallelGraphMiddle from './components/ParallelGraphMiddle';
 import Overview from './components/Overview';
 const rootPath = process.env.PUBLIC_URL;
 
@@ -63,12 +65,24 @@ const routes = [
     exact: true,
     breadcrumbName: 'ParallelGraph'
   },
-
+  {
+    path:`${rootPath}/ParallelGraphMiddle`,
+    component: ParallelGraphMiddle,
+    exact: true,
+    breadcrumbName: 'ParallelGraphMiddle'
+  },
   {
     path:`${rootPath}/Overview`,
     component: Overview,
     exact: true,
     breadcrumbName: 'Overview'
+  },
+
+  {
+    path:`${rootPath}/CountryWise`,
+    component: CountryWise,
+    exact: true,
+    breadcrumbName: 'CountryWise'
   },
 
   {

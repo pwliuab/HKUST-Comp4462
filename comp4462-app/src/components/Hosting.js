@@ -39,12 +39,12 @@ class Hosting extends React.Component {
     // {this.renderParallelGraph(this.state.data)}
 
     return(
-        <div>
+        <div style={{position:'relative', top:900, left:500, height:500}}>
         <div class="flourish-embed flourish-radar" data-src="visualisation/7901989"></div>
         <div class="flourish-embed flourish-radar" data-src="visualisation/7901944"></div>
         <div class="flourish-embed flourish-radar" data-src="visualisation/7902006"></div>
         <div class="flourish-embed flourish-radar" data-src="visualisation/7900601"></div>
-        <div class="flourish-embed flourish-radar" data-src="visualisation/7901976"></div>
+        <div  class="flourish-embed flourish-radar" data-src="visualisation/7901976"></div>
       </div>
     );
   }

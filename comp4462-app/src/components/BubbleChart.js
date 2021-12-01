@@ -91,6 +91,93 @@ class BubbleChart extends React.Component {
     .on('mouseover', tooltip.show)
     // Hide the tooltip when "mouseout"
     .on('mouseout', tooltip.hide)
+    svg.append("text")
+    .attr('transform', 'translate(100,100)')
+            .attr("x", 0)
+            .attr("y", -20)
+            .attr("text-anchor", "left")
+            .style("font-size", "15px")
+            .style("fill", "grey")
+            .style("font-weight", "bold")
+            .style("max-width", 400)
+            .text("Asia");
+    svg
+      .append('circle')
+      .attr('transform', 'translate(77,73)')
+    .attr("cx",0).attr("cy",0).attr("r",10)
+      .style("fill", myColor('Asia'))
+//////////////////////////////////////////////////////////
+// add svg label and text
+/////////////////////////////////////////////////////////
+svg.append("text")
+.attr('transform', 'translate(193,100)')
+        .attr("x", 0)
+        .attr("y", -20)
+        .attr("text-anchor", "left")
+        .style("font-size", "15px")
+        .style("fill", "grey")
+        .style("font-weight", "bold")
+        .style("max-width", 400)
+        .text("Europe");
+svg
+  .append('circle')
+  .attr('transform', 'translate(170,73)')
+.attr("cx",0).attr("cy",0).attr("r",10)
+  .style("fill", myColor('Europe') );
+//////////////////////////////////////////////////////////
+// add svg label and text
+/////////////////////////////////////////////////////////
+svg.append("text")
+.attr('transform', 'translate(293,100)')
+        .attr("x", 0)
+        .attr("y", -20)
+        .attr("text-anchor", "left")
+        .style("font-size", "15px")
+        .style("fill", "grey")
+        .style("font-weight", "bold")
+        .style("max-width", 400)
+        .text("Americas");
+svg
+  .append('circle')
+  .attr('transform', 'translate(270,73)')
+.attr("cx",0).attr("cy",0).attr("r",10)
+  .style("fill", myColor('Americas'));
+//////////////////////////////////////////////////////////
+// add svg label and text
+/////////////////////////////////////////////////////////
+  svg.append("text")
+  .attr('transform', 'translate(403,100)')
+          .attr("x", 0)
+          .attr("y", -20)
+          .attr("text-anchor", "left")
+          .style("font-size", "15px")
+          .style("fill", "grey")
+          .style("font-weight", "bold")
+          .style("max-width", 400)
+          .text("Africa");
+  svg
+    .append('circle')
+    .attr('transform', 'translate(380,73)')
+  .attr("cx",0).attr("cy",0).attr("r",10)
+    .style("fill", myColor('Africa') );
+//////////////////////////////////////////////////////////
+// add svg label and text
+/////////////////////////////////////////////////////////
+svg.append("text")
+.attr('transform', 'translate(500,100)')
+        .attr("x", 0)
+        .attr("y", -20)
+        .attr("text-anchor", "left")
+        .style("font-size", "15px")
+        .style("fill", "grey")
+        .style("font-weight", "bold")
+        .style("max-width", 400)
+        .text("Oceania");
+svg
+  .append('circle')
+  .attr('transform', 'translate(477,73)')
+.attr("cx",0).attr("cy",0).attr("r",10)
+  .style("fill", myColor('Oceania') );
 
   }
   componentDidMount() {
@@ -146,10 +233,11 @@ class BubbleChart extends React.Component {
   // </div>
 
     return(
-        <div style={{position:"relative", top:20}}>
-        <div style={{position:"relative", top:-300}} ref="bubble"/>
-      <div style={{position:"relative", top:300}}>
+        <div style={{position:'relative', top:-250}}>
+        <div ref="bubble"/>
+      <div style={{position:'relative', top:400, left:-370}}>
         <Slider
+          style={{width:'50%'}}
           aria-label="Temperature"
           defaultValue={1984}
           valueLabelDisplay="auto"
@@ -157,7 +245,9 @@ class BubbleChart extends React.Component {
           min={1984}
           max={1993}
         />
+        <div style={{position:'relative'}}>
         Bubble Chart selected year : <span style={{color:'green', fontWeight:'bold'}}>{this.state.current}</span>
+        </div>
        </div>
 
       </div>

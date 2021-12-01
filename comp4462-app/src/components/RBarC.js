@@ -19,13 +19,13 @@ class RBarC extends React.Component {
   renderGraph(data){
   }
   componentDidMount() {
-    var currentbtn = document.getElementById('rbc');
-    var activeBtn = document.getElementsByClassName('active');
-    console.log(activeBtn);
-    for(var i = 0; i < activeBtn.length; i++){
-      if(activeBtn[i] != currentbtn) activeBtn[i].className = ' ';
-    }
-    currentbtn.className = 'active';
+    // var currentbtn = document.getElementById('rbc');
+    // var activeBtn = document.getElementsByClassName('active');
+    // console.log(activeBtn);
+    // for(var i = 0; i < activeBtn.length; i++){
+    //   if(activeBtn[i] != currentbtn) activeBtn[i].className = ' ';
+    // }
+    // currentbtn.className = 'active';
     const script = document.createElement("script");
 
     script.src = "https://public.flourish.studio/resources/embed.js";
@@ -38,9 +38,8 @@ class RBarC extends React.Component {
     // {this.renderParallelGraph(this.state.data)}
 
     return(
-        <div style={{position:"absolute", top:"100px", width: 1200, height: 1900}}>
+        <div style={{position:"relative", top:800, width: 1200, height: 1900}}>
         <div class="flourish-embed flourish-bar-chart-race" data-src="visualisation/7873042" ></div>
-        <Hosting/>
       </div>
     );
   }

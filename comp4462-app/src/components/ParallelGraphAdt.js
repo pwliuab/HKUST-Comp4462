@@ -248,16 +248,16 @@ class ParallelGraphAdt extends React.Component {
 
     return(
         <div>
-        <div style={{position:"relative", top:1300, left:50}}>
+        <div style={{position:"relative", top:600, left:0}}>
         <h1>Analysis:</h1>
 <p>1.There are two Asian countries that act as most European countries:</p>
 <p>2.Japan and South Korea! Surprisingly they are both high-income countries!</p>
 Question: Does the pattern has a high correlation with the income level of the countries?
       </div>
-        <div style={{position:"relative", top:1400, left:450}} ref="svg3"/>
-      <div style={{position:"relative", top:1600, left:35}}>
+        <div style={{position:"relative", top:650, left:0}} ref="svg3"/>
+      <div style={{position:"relative", top:860, left:0}}>
         <Slider
-          style={{width:'50%'}}
+          style={{width:'90%'}}
           aria-label="Temperature"
           defaultValue={1984}
           valueLabelDisplay="auto"

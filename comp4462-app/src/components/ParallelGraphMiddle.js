@@ -11,7 +11,7 @@ import d3Tip from 'd3-tip'
 const axios = require('axios').default;
 
 // first graph in observable
-class ParallelGraphPop extends React.Component {
+class ParallelGraphMiddle extends React.Component {
   constructor(props) {
     super(props);
     this.myRef = React.createRef();
@@ -22,30 +22,30 @@ class ParallelGraphPop extends React.Component {
       host_or_not :true,
       hostData: [],
       indexOfOption: 0,
-      filterCountry: false
     }
   }
-  renderGraph(selectedYear, selectedContinent=0, filterCountry=false){
+  renderGraph(selectedYear, selectedContinent=0){
     const option = ["All","Asia", "Europe", "Americas", "Africa", "Oceania"];
     const height = 400;
     const width = 400;
     // remove svg before drawing svg , prevent repeating drawing.
     d3.selectAll('#pop').remove();
     d3.selectAll('#tooltip').remove();
-    const svg = d3.select(this.refs.pgp)
+    const svg = d3.select(this.refs.ptsd)
                   .append('svg')
                   .attr('width', 1000)
                   .attr('hegith', height)
                   .attr("id",'pop');
                   const margin = { left: 40, top: 30, right: 40, bottom: 20 }
-                    const dimensions = [ 'GDP_Growth',  'Medal','Athelets','Population','GDP','GDP_Per_Capita']
-                    const dimension2 = [ 'GDP_Growth',  'Medal','Athelets','Population','GDP','GDP_Per_Capita','Continent']
-                    var data = this.state.data.filter(d=>(d.Year==selectedYear))
-                    // convert all the datatype from string to integer
-                    console.log(filterCountry)
-                    data = (filterCountry) ? data.filter(d=>(d.Country!=='China' && d.Country!=='United States' && d.Country!='India')) : data;
-                    console.log('fk')
-                    console.log(data);
+
+                  const dimensions = [ 'GDP_Growth',  'Medal','Athelets','Population','GDP','GDP_Per_Capita']
+                  const dimension2 = [ 'GDP_Growth',  'Medal','Athelets','Population','GDP','GDP_Per_Capita','Continent']
+                  var data = this.state.data.filter(d=>(d.Year == selectedYear))
+                  var host="";
+
+                  if (option[selectedContinent]!=='All' && data != null)
+                     data = data.filter(d=> (d.Continent === option[selectedContinent]));
+
                   // Use scalePoint because x-axis domain is discrete
                   const xScale = d3.scalePoint()
                     .range([margin.left, 1000 - margin.right])
@@ -57,20 +57,13 @@ class ParallelGraphPop extends React.Component {
                     .attr('transform', `translate(0,${margin.top})`)
                     .selectAll('path')
                       .attr('stroke', 'none')
-                      var host = '';
 
-                  var host = this.state.host_or_not ? (this.state.hostData.filter(d=>(d.Year== selectedYear)))[0].Country : '';
-                  if (option[selectedContinent] !='All' && data != null){
-                      data = data.filter(d=> (d.Continent == option[selectedContinent]));
-
-                  }
                   // Make one y-scale for each dimension
                   const yScales = dimensions.map(dimension =>
                     d3.scaleLinear()
                       .range([height - margin.bottom, margin.top])
                       .domain(d3.extent(this.state.data.map(d => d[dimension])))
                   )
-
                   var myColor = d3.scaleOrdinal()
                     .domain(["Asia", "Europe", "Americas", "Africa", "Oceania"])
                     .range(d3.schemeSet2 );
@@ -88,8 +81,7 @@ class ParallelGraphPop extends React.Component {
                     d3.selectAll(".line")
                       .transition().duration(200)
                       .style("stroke", "lightgrey")
-                      .style("opacity", "0.2");
-
+                      .style("opacity", "0.2")
                     // Second the hovered takes its color
                       d3.selectAll(".line").filter("."+d.Continent)
                         .transition().duration(100)
@@ -116,7 +108,7 @@ class ParallelGraphPop extends React.Component {
                     .style('position','left')
                     //.style('font-family', 'monospace')
                     .html((event, d) => `
-                      <div id='tooltip' style='float: right'>
+                      <div style='float: right'>
                         ${d.Country} <br/>
                         Continent: ${d.Continent} <br/>
                       </div>`)
@@ -172,94 +164,6 @@ class ParallelGraphPop extends React.Component {
                     .on('click',clickevent)
                     .on("mouseleave.text", tooltip.hide)
                     .on("mouseleave.line", doNotHighlight)
-
-                    svg.append("text")
-                    .attr('transform', 'translate(53,-3)')
-                            .attr("x", 0)
-                            .attr("y", -20)
-                            .attr("text-anchor", "left")
-                            .style("font-size", "15px")
-                            .style("fill", "grey")
-                            .style("font-weight", "bold")
-                            .style("max-width", 400)
-                            .text("Asia");
-                    svg
-                      .append('circle')
-                      .attr('transform', 'translate(30,-30)')
-                    .attr("cx",0).attr("cy",0).attr("r",10)
-                      .style("fill", myColor('Asia'))
-//////////////////////////////////////////////////////////
-// add svg label and text
-/////////////////////////////////////////////////////////
-                svg.append("text")
-                .attr('transform', 'translate(150,-3)')
-                        .attr("x", 0)
-                        .attr("y", -20)
-                        .attr("text-anchor", "left")
-                        .style("font-size", "15px")
-                        .style("fill", "grey")
-                        .style("font-weight", "bold")
-                        .style("max-width", 400)
-                        .text("Europe");
-                svg
-                  .append('circle')
-                  .attr('transform', 'translate(127,-30)')
-                .attr("cx",0).attr("cy",0).attr("r",10)
-                  .style("fill", myColor('Europe') );
-//////////////////////////////////////////////////////////
-// add svg label and text
-/////////////////////////////////////////////////////////
-                svg.append("text")
-                .attr('transform', 'translate(250,-3)')
-                        .attr("x", 0)
-                        .attr("y", -20)
-                        .attr("text-anchor", "left")
-                        .style("font-size", "15px")
-                        .style("fill", "grey")
-                        .style("font-weight", "bold")
-                        .style("max-width", 400)
-                        .text("Americas");
-                svg
-                  .append('circle')
-                  .attr('transform', 'translate(227,-30)')
-                .attr("cx",0).attr("cy",0).attr("r",10)
-                  .style("fill", myColor('Americas'));
-//////////////////////////////////////////////////////////
-// add svg label and text
-/////////////////////////////////////////////////////////
-                  svg.append("text")
-                  .attr('transform', 'translate(360,-3)')
-                          .attr("x", 0)
-                          .attr("y", -20)
-                          .attr("text-anchor", "left")
-                          .style("font-size", "15px")
-                          .style("fill", "grey")
-                          .style("font-weight", "bold")
-                          .style("max-width", 400)
-                          .text("Africa");
-                  svg
-                    .append('circle')
-                    .attr('transform', 'translate(337,-30)')
-                  .attr("cx",0).attr("cy",0).attr("r",10)
-                    .style("fill", myColor('Africa') );
-//////////////////////////////////////////////////////////
-// add svg label and text
-/////////////////////////////////////////////////////////
-                svg.append("text")
-                .attr('transform', 'translate(450,-3)')
-                        .attr("x", 0)
-                        .attr("y", -20)
-                        .attr("text-anchor", "left")
-                        .style("font-size", "15px")
-                        .style("fill", "grey")
-                        .style("font-weight", "bold")
-                        .style("max-width", 400)
-                        .text("Oceania");
-                svg
-                  .append('circle')
-                  .attr('transform', 'translate(427,-30)')
-                .attr("cx",0).attr("cy",0).attr("r",10)
-                  .style("fill", myColor('Oceania') );
         return(
           <svg ref={this.myRef} style={{height:1000, width:1000}} />
         );
@@ -287,10 +191,10 @@ class ParallelGraphPop extends React.Component {
           return Hostdata;
         }).then(
           (HostData) => {
+            console.log(HostData);
             this.setState({hostData:HostData});
+            this.renderGraph(1984,0);
           }
-        ).then(
-          ()=>{this.renderGraph(1984,0)}
         )
     )
     // axios.get(url).then( res => {
@@ -300,17 +204,19 @@ class ParallelGraphPop extends React.Component {
   }
 
   handleSelectItem = (event) =>{
+    console.log(this.state.indexOfOption);
     this.setState({indexOfOption: event.target.value});
-    this.renderGraph(this.state.current, event.target.value, this.state.filterCountry);
+    this.renderGraph(this.state.current, event.target.value);
   }
 
   handleHost = (event) => {
     this.setState({host_or_not:event.target.value});
     this.state.host_or_not = event.target.value;
-    this.renderGraph(this.state.current, this.state.indexOfOption, this.state.filterCountry);
+    this.renderGraph(this.state.current, this.state.indexOfOption);
   }
 
   handleChange = (newValue,event) =>{
+    console.log(event);
       var newV = 0;
       if(this.state.previous == 0){
         newV = this.state.current + (parseInt(newValue) - this.state.current) * 4;
@@ -319,58 +225,25 @@ class ParallelGraphPop extends React.Component {
         newV = this.state.current + (parseInt(newValue) - this.state.previous)*4;
         this.state.previous = parseInt(newValue);
       }
+      console.log("newValue" + newValue);
+      console.log("current value" + this.state.current);
+      console.log("newV" + newV);
       this.setState({current:newV});
       // console.log(event);
       // render agian when there is any changes
-      this.renderGraph(newV, this.state.indexOfOption, this.state.filterCountry);
-  }
-  handleFilterCountry = (event) => {
-    this.setState({filterCountry: event.target.value});
-    this.renderGraph(this.state.current, this.state.indexOfOption,event.target.value);
+      console.log("xxcurrent value" + this.state.current);
+      this.renderGraph(newV, this.state.indexOfOption);
   }
   render() {
     // {this.renderParallelGraph(this.state.data)}
 
     return(
-        <div  style={{position:"absolute", top:-384, left:10}}>
-        <div style={{position:"relative", top:180, left:390}}>
+        <div  style={{position:"absolute", top:-180, left:0}}>
+        <div style={{position:"relative", top:200, left:100}}>
             <h1>Parallel Coordinate:</h1>
-            {
-              (!this.state.filterCountry)? (<p>We could see <b style={{color:'red'}}>host Countries</b> are doing pretty well in that year!</p>) : (null)
-            }
-            {
-              (!this.state.filterCountry)? (<p><b>Observe that China and India have much more population: filter out them! By selecting button below</b></p>) : (null)
-            }
-            {
-              (!this.state.filterCountry)? (<p>Also filter out the US because of its dominant GDP</p>) : (null)
-            }
-            {
-              (!this.state.filterCountry)? (<p>They will affect our observation of the population.</p>) : (null)
-            }
-            {
-              (this.state.filterCountry)? (<p>After filtering <b>US</b>, <b>China</b> and <b>India</b></p>) : (null)
-            }
-
-
       </div>
         <div style={{position:'relative', top:250, left:-200}}>
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
-         <InputLabel id="demo-simple-select-helper-label">Host</InputLabel>
-         <Select
-           labelId="demo-simple-select-helper-label"
-           id="demo-simple-select-helper"
-           value={this.state.host_or_not}
-           label="Next Conclusion"
-           onChange={this.handleHost}
-         >
-           <MenuItem value="true">
-             <em>None</em>
-           </MenuItem>
-           <MenuItem value={true}>Yes</MenuItem>
-           <MenuItem value={false}>No</MenuItem>
-         </Select>
-         <FormHelperText style={{color:'red'}}>Show Hosting countries?</FormHelperText>
-       </FormControl>
+
        <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">Region</InputLabel>
         <Select
@@ -389,34 +262,12 @@ class ParallelGraphPop extends React.Component {
           <MenuItem value={4}>Africa</MenuItem>
           <MenuItem value={5}>Oceania</MenuItem>
 
-
         </Select>
         <FormHelperText>Select a Continent</FormHelperText>
       </FormControl>
  </div>
- <div style={{position:'relative', top:270, left:-200}}>
- <FormControl sx={{ m: 1, minWidth: 120 }}>
-  <InputLabel id="demo-simple-select-helper-label">Filter-US&China&India</InputLabel>
-  <Select
-    labelId="demo-simple-select-helper-label"
-    id="demo-simple-select-helper"
-    value={this.state.filterCountry}
-    label="Filter"
-    onChange={this.handleFilterCountry}
-  >
-    <MenuItem value="0">
-    </MenuItem>
-    <MenuItem value={true}>Yes</MenuItem>
-    <MenuItem value={false}>No</MenuItem>
-
-
-  </Select>
-  <FormHelperText>Filter India, China and US</FormHelperText>
-</FormControl>
- </div>
-
-        <div style={{position:"relative",top:50 , left:450}} ref="pgp"/>
-      <div style={{position:"relative", top:280, left:400}}>
+        <div style={{position:"relative",top:300 , left:450}} ref="ptsd"/>
+      <div style={{position:"relative", top:330, left:400}}>
         <Slider
           style={{width:"94%"}}
           aria-label="Temperature"
@@ -429,12 +280,10 @@ class ParallelGraphPop extends React.Component {
         <div style={{position:'relative'}}>
         Parallel Graph selected year: <span style={{color:'green', fontWeight:'bold'}}>{this.state.current}</span>
         </div>
-        <div>
-        </div>
        </div>
       </div>
     );
   }
 }
 
-export default ParallelGraphPop ;
+export default ParallelGraphMiddle ;
