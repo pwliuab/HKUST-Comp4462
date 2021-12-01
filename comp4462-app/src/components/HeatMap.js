@@ -199,6 +199,7 @@ class HeatMap extends React.Component {
                                   .style("font-weight", "bold")
                                   .style("max-width", 400)
                                   .text("Sex");
+
                                   svg.append("text")
                                   .attr('transform', 'translate(700,425)')
                                           .attr("x", 0)
@@ -221,6 +222,7 @@ class HeatMap extends React.Component {
       if(activeBtn[i] != currentbtn) activeBtn[i].className = ' ';
     }
     currentbtn.className = 'active';
+  // fetch data from the server
     d3.csv("https://raw.githubusercontent.com/pwliuab/comp4462Data/main/separateSex.csv", function(Resdata) {
       return Resdata;
     }).then(

@@ -4,8 +4,11 @@ import HeatMap from './components/HeatMap';
 import ParallelGraph from './components/ParallelGraph';
 import BubbleChart from './components/BubbleChart';
 import DotPlot from './components/DotPlot';
-import RBarC from './components/RBarC'
-import Hosting from './components/Hosting'
+import RBarC from './components/RBarC';
+import Hosting from './components/Hosting';
+import ParallelGraphAdt from './components/ParallelGraphAdt';
+import ParallelGraphPop from './components/ParallelGraphPop';
+import Overview from './components/Overview';
 const rootPath = process.env.PUBLIC_URL;
 
 const routes = [
@@ -45,11 +48,39 @@ const routes = [
   {
     path:`${rootPath}/ParallelGraph`,
     component: ParallelGraph,
+    exact: true,
     breadcrumbName: 'ParallelGraph'
+  },
+  {
+    path:`${rootPath}/ParallelGraphAdt`,
+    component: ParallelGraphAdt,
+    exact: true,
+    breadcrumbName: 'ParallelGraphAdt'
+  },
+  {
+    path:`${rootPath}/`,
+    component: ParallelGraph,
+    exact: true,
+    breadcrumbName: 'ParallelGraph'
+  },
+
+  {
+    path:`${rootPath}/Overview`,
+    component: Overview,
+    exact: true,
+    breadcrumbName: 'Overview'
+  },
+
+  {
+    path:`${rootPath}/ParallelGraphPop`,
+    component: ParallelGraphPop,
+    exact: true,
+    breadcrumbName: 'ParallelGraphPop'
   },
   {
     path:`${rootPath}/BubbleChart`,
     component: BubbleChart,
+    exact: true,
     breadcrumbName: 'BubbleChart'
   },
   {
@@ -60,6 +91,7 @@ const routes = [
   {
     path:`${rootPath}/RBarC`,
     component: RBarC,
+    exact: true,
     breadcrumbName: 'RBarC'
   },
   {

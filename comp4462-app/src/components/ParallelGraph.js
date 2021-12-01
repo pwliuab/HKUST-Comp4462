@@ -261,6 +261,7 @@ class ParallelGraph extends React.Component {
   componentDidMount() {
     const url = 'https://raw.githubusercontent.com/yliugt/4462/main/olympic.json';
     axios.get(url).then( res => {
+      console.log(res.data);
       this.setState({data:res.data});
       this.renderGraph(1984);
     });
