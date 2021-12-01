@@ -59,6 +59,15 @@
 - [x] data visualization of race bar chart
 - [x] data visualization of parallel chart
 - [ ] Documentation of coding  
+### Task todo before 29 / 11
+- [x] ppt preparation
+- [x] presentation rehearsal
+### Task todo before 03 / 12
+- [ ] video filming 
+- [ ] coding collection
+- [ ] system documentation
+- [ ] system adjustment
+- [ ] backend handling
  ### User Guide :
 - To be done
 
