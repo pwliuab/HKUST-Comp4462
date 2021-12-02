@@ -44,7 +44,7 @@
 
 - front-end : react-js, D3-js ( installation of node js )-> (command of installing react: npx create-react-app my-app)
 - back-end : node.js, express.js, Postman
-- database : mongo db
+- database : mongo db ( you need to set up mongo db and create database and collection before take a look to front-end )
 ```
 ### directory:
 ```
