@@ -47,7 +47,7 @@ const routes = [
     component: HeatMap,
     breadcrumbName: 'heatMap'
   },
-  {
+  { 
     path:`${rootPath}/ParallelGraph`,
     component: ParallelGraph,
     exact: true,
