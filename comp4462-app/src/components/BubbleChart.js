@@ -188,11 +188,37 @@ svg
     //   if(activeBtn[i] != currentbtn) activeBtn[i].className = ' ';
     // }
     // currentbtn.className = 'active';
-    const url = 'https://raw.githubusercontent.com/yliugt/4462/main/olympic.json';
-    axios.get(url).then( res => {
-      this.setState({data:res.data});
-      this.renderGraph(1984);
-    });
+  //   const url = 'https://raw.githubusercontent.com/yliugt/4462/main/olympic.json';
+  //   axios.get(url).then( res => {
+  //     this.setState({data:res.data});
+  //     this.renderGraph(1984);
+  //   });
+  const url = 'http://localhost:3000/Olympics';
+  fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type' : 'application/json',
+
+      }
+    }).then(res =>  { return res.json();})
+      .then(resData => {
+        resData = resData.map(d =>{
+          var tempObj = d;
+          tempObj.Year = parseInt(d.Year);
+          tempObj.GDP = parseFloat(d.GDP);
+          tempObj.GDP_Per_Capita = parseFloat(d.GDP_Per_Capita);
+          tempObj.Medal = parseInt(d.Medal);
+          tempObj.Population = parseInt(d.Population);
+          tempObj.Athelets = parseInt(d.Athelets);
+          tempObj.GDP_Growth = parseInt(d.GDP_Growth);
+          return tempObj;
+        })
+        this.setState({data:resData});
+        this.renderGraph(1984);
+      }
+
+    )
+      .catch(err => {console.log(err)});
   }
   handleChange = (newValue,event) =>{
     console.log(event);

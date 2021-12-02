@@ -61,9 +61,9 @@ const routes = [
   },
   {
     path:`${rootPath}/`,
-    component: ParallelGraph,
+    component: Overview,
     exact: true,
-    breadcrumbName: 'ParallelGraph'
+    breadcrumbName: 'Overview'
   },
   {
     path:`${rootPath}/ParallelGraphMiddle`,
