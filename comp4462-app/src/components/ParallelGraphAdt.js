@@ -210,14 +210,30 @@ class ParallelGraphAdt extends React.Component {
         );
   }
   componentDidMount() {
-    const url = 'https://raw.githubusercontent.com/yliugt/4462/main/olympic.json';
-    d3.csv('https://raw.githubusercontent.com/yliugt/4462/main/olympic.csv', function(Resdata) {
-      return Resdata;
-    }).then(
-    (Resdata)=>{
-      this.setState({data:Resdata});
-      this.renderGraph(1984);
-    })
+    // const url = 'https://raw.githubusercontent.com/yliugt/4462/main/olympic.json';
+    // d3.csv('https://raw.githubusercontent.com/yliugt/4462/main/olympic.csv', function(Resdata) {
+    //   return Resdata;
+    // }).then(
+    // (Resdata)=>{
+    //   this.setState({data:Resdata});
+    //   this.renderGraph(1984);
+    // })
+    const url = 'http://localhost:3000/Olympics';
+    fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type' : 'application/json',
+
+        }
+      }).then(res =>  { return res.json();})
+        .then(resData => {
+          this.setState({data:resData})
+          this.renderGraph(1984);
+        }
+
+      )
+        .catch(err => {console.log(err)});
+
     // axios.get(url).then( res => {
     // this.setState({data:res.data});
     // this.renderGraph(1984);

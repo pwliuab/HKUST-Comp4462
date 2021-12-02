@@ -265,34 +265,76 @@ class ParallelGraphPop extends React.Component {
         );
   }
   componentDidMount() {
-    const url = 'https://raw.githubusercontent.com/yliugt/4462/main/olympic.json';
-    d3.csv('https://raw.githubusercontent.com/yliugt/4462/main/olympic.csv', function(Resdata) {
-      return Resdata;
-    }).then(
-    (Resdata)=>{
-      Resdata = Resdata.map(d =>{
-                    var tempObj = d;
-                    tempObj.Year = parseInt(d.Year);
-                    tempObj.GDP = parseFloat(d.GDP);
-                    tempObj.GDP_Per_Capita = parseFloat(d.GDP_Per_Capita);
-                    tempObj.Medal = parseInt(d.Medal);
-                    tempObj.Population = parseInt(d.Population);
-                    tempObj.Athelets = parseInt(d.Athelets);
-                    tempObj.GDP_Growth = parseInt(d.GDP_Growth);
-                    return tempObj;
-                      })
-      this.setState({data:Resdata});
-    }).then(
-        d3.csv("https://raw.githubusercontent.com/yliugt/4462/main/host_countries.csv",(Hostdata)=>{
-          return Hostdata;
+    // const url = 'https://raw.githubusercontent.com/yliugt/4462/main/olympic.json';
+    // d3.csv('https://raw.githubusercontent.com/yliugt/4462/main/olympic.csv', function(Resdata) {
+    //   return Resdata;
+    // }).then(
+    // (Resdata)=>{
+    //   Resdata = Resdata.map(d =>{
+    //                 var tempObj = d;
+    //                 tempObj.Year = parseInt(d.Year);
+    //                 tempObj.GDP = parseFloat(d.GDP);
+    //                 tempObj.GDP_Per_Capita = parseFloat(d.GDP_Per_Capita);
+    //                 tempObj.Medal = parseInt(d.Medal);
+    //                 tempObj.Population = parseInt(d.Population);
+    //                 tempObj.Athelets = parseInt(d.Athelets);
+    //                 tempObj.GDP_Growth = parseInt(d.GDP_Growth);
+    //                 return tempObj;
+    //                   })
+    //   this.setState({data:Resdata});
+    // }).then(
+    //     d3.csv("https://raw.githubusercontent.com/yliugt/4462/main/host_countries.csv",(Hostdata)=>{
+    //       return Hostdata;
+    //     }).then(
+    //       (HostData) => {
+    //         this.setState({hostData:HostData});
+    //       }
+    //     ).then(
+    //       ()=>{this.renderGraph(1984,0)}
+    //     )
+    // )
+    const url = 'http://localhost:3000/Olympics';
+    const url1 = 'http://localhost:3000/Hosting';
+    fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type' : 'application/json',
+
+        }
+      }).then(res =>  { return res.json();})
+        .then(Resdata => {
+            Resdata = Resdata.map(d =>{
+                          var tempObj = d;
+                          tempObj.Year = parseInt(d.Year);
+                          tempObj.GDP = parseFloat(d.GDP);
+                          tempObj.GDP_Per_Capita = parseFloat(d.GDP_Per_Capita);
+                          tempObj.Medal = parseInt(d.Medal);
+                          tempObj.Population = parseInt(d.Population);
+                          tempObj.Athelets = parseInt(d.Athelets);
+                          tempObj.GDP_Growth = parseInt(d.GDP_Growth);
+                          return tempObj;
+                            })
+            this.setState({data:Resdata});
         }).then(
-          (HostData) => {
-            this.setState({hostData:HostData});
+          ()=>{
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                  'Content-Type' : 'application/json',
+
+                }
+              }).then(res =>  { return res.json();})
+                .then(ResData => {
+                    this.setState({hostData:ResData});
+                }).then(
+                  ()=>{
+                    this.renderGraph(1984,0);
+                  }
+                )
           }
-        ).then(
-          ()=>{this.renderGraph(1984,0)}
         )
-    )
+
     // axios.get(url).then( res => {
     // this.setState({data:res.data});
     // this.renderGraph(1984);

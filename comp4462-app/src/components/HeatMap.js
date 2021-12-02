@@ -223,15 +223,29 @@ class HeatMap extends React.Component {
     }
     currentbtn.className = 'active';
   // fetch data from the server
-    d3.csv("https://raw.githubusercontent.com/pwliuab/comp4462Data/main/separateSex.csv", function(Resdata) {
-      return Resdata;
-    }).then(
-    (Resdata)=>{
-      this.renderGraph(Resdata);
-    }
-    );
+    // d3.csv("https://raw.githubusercontent.com/pwliuab/comp4462Data/main/separateSex.csv", function(Resdata) {
+    //   return Resdata;
+    // }).then(
+    // (Resdata)=>{
+    //   this.renderGraph(Resdata);
+    // }
+    // );
+    // fetch mongo db
+    const url = 'http://localhost:3000/GoldenAge';
+    fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type' : 'application/json',
 
-  }
+        }
+      }).then(res =>  { return res.json();})
+        .then(resData => {
+          this.renderGraph(resData);
+        }
+
+      )
+        .catch(err => {console.log(err)});
+        }
 
   render() {
     // {this.renderParallelGraph(this.state.data)}
