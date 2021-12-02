@@ -43,7 +43,7 @@
 (dataset : 2021 Tokyo Olympics Dataset (Information of Medals),Countries of the World Dataset (Information of different countries),120 Years of Olympic History Dataset (Historical Data))
 
 - front-end : react-js, D3-js ( installation of node js )-> (command of installing react: npx create-react-app my-app)
-- back-end : node.js 
+- back-end : node.js, express.js, Postman
 - database : mongo db
 ```
 ### directory:
