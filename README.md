@@ -7,10 +7,10 @@
  - Email: pwliuab@connect.ust.hk
  - Github: pwliuab
  - Dev ID: Paul_branch
- - responsible for web construction including backend and frontend
- - node.js, react.js and D3.js integration
- - heatmap drawing using D3.js
- - data preprocessing using python pandas https://colab.research.google.com/drive/1HnLGZdriaiNi9juI7g-VdcquSlBKkpgR
+ - Responsible for web construction including backend and frontend.
+ - Heatmap drawing using D3.js
+ - (Front-end : react.js && D3.js integration) && (Back-end : node.js && express.js && MongoDB)
+ - Data preprocessing : python pandas https://colab.research.google.com/drive/1HnLGZdriaiNi9juI7g-VdcquSlBKkpgR
 ```
 ### 2. lvvv-318 (LV Zhiyuan)
 ```
@@ -38,7 +38,7 @@
 ### Environment Setup:
 ```
 - OS : Windows 
-- IDE : atom
+- tools : atom (for javascript coding), colab (for python pandas data preprocessing), Postman (for backend-testing), React library(npm front-end && backend), flourish , Excel, MongoDB (databse)
 - data preprocessing : python -> pandas 
 (dataset : 2021 Tokyo Olympics Dataset (Information of Medals),Countries of the World Dataset (Information of different countries),120 Years of Olympic History Dataset (Historical Data))
 
