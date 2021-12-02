@@ -45,6 +45,7 @@
 - front-end : react-js, D3-js ( installation of node js )-> (command of installing react: npx create-react-app my-app)
 - back-end : node.js, express.js, Postman
 - database : mongo db ( you need to set up mongo db and create database and collection before take a look to front-end )
+                      (or you go to history before 2/12 's update to get front-end with d3.csv() fetching which can fetched data directly)
 ```
 ### directory:
 ```
