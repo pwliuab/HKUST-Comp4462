@@ -11,7 +11,6 @@
  - Heatmap drawing using D3.js
  - (Front-end : react.js && D3.js integration) && (Back-end : node.js && express.js && MongoDB)
  - Data preprocessing : python pandas https://colab.research.google.com/drive/1HnLGZdriaiNi9juI7g-VdcquSlBKkpgR
- - video filming and presenting
 ```
 ### 2. lvvv-318 (LV Zhiyuan)
 ```
