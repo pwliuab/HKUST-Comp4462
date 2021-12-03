@@ -318,7 +318,7 @@ class ParallelGraphPop extends React.Component {
         }).then(
           ()=>{
 
-            fetch(url, {
+            fetch(url1, {
                 method: 'GET',
                 headers: {
                   'Content-Type' : 'application/json',
@@ -374,7 +374,7 @@ class ParallelGraphPop extends React.Component {
     // {this.renderParallelGraph(this.state.data)}
 
     return(
-        <div  style={{position:"absolute", top:-384, left:10}}>
+        <div  style={{position:"absolute", top:-370, left:10}}>
         <div style={{position:"relative", top:180, left:390}}>
             <h1>Parallel Coordinate:</h1>
             {

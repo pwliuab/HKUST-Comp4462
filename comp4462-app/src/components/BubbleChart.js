@@ -173,6 +173,28 @@ svg.append("text")
         .style("font-weight", "bold")
         .style("max-width", 400)
         .text("Oceania");
+////////////////////////////////////////
+svg.append("text")
+.attr('transform', 'translate(60,500) rotate(90), scale(-1)')
+        .attr("x", 0)
+        .attr("y", -20)
+        .attr("text-anchor", "left")
+        .style("font-size", "30px")
+        .style("fill", "grey")
+        .style("font-weight", "bold")
+        .style("max-width", 400)
+        .text("Number of Athletes");
+
+        svg.append("text")
+        .attr('transform', 'translate(450,640)')
+                .attr("x", 0)
+                .attr("y", -20)
+                .attr("text-anchor", "left")
+                .style("font-size", "30px")
+                .style("fill", "grey")
+                .style("font-weight", "bold")
+                .style("max-width", 400)
+                .text("GDP Per Capita");
 svg
   .append('circle')
   .attr('transform', 'translate(477,73)')
