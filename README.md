@@ -16,8 +16,8 @@
 ```
  - Email: zlv@connect.ust.hk
  - Github: lvvv-318
- - Dev ID: 
- - responsible for 
+ - Dev ID: lvvv-318
+ - responsible for text cloud visualization, dotplot visualization. preprocess data using colab
 ```
 ### 3. yliugt (LIU Yuzhi)
 ```
@@ -70,11 +70,11 @@
 - [x] ppt preparation
 - [x] presentation rehearsal
 ### Task todo before 03 / 12
-- [ ] video filming 
+- [x] video filming 
 - [ ] coding collection
-- [ ] system documentation
-- [ ] system adjustment
-- [ ] backend handling
+- [x] system documentation
+- [x] system adjustment
+- [x] backend handling
  ### User Guide :
 - To be done
 
