@@ -6,7 +6,7 @@
  - Responsible for web construction including backend and frontend.
  - Heatmap drawing using D3.js
  - (Front-end : react.js && D3.js integration) && (Back-end : node.js && express.js && MongoDB)
- - Data preprocessing : python pandas https://colab.research.google.com/drive/1HnLGZdriaiNi9juI7g-VdcquSlBKkpgR
+ - Data preprocessing : python pandas https://colab.research.google.com/drive/1HnLGZdriaiNi9juI7g-VdcquSlBKkpgR?usp=sharing
 ```
 ### Environment Setup:
 ```
