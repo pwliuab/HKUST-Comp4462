@@ -9,7 +9,8 @@
  - Dev ID: Paul_branch
  - Responsible for web construction including backend and frontend.
  - Heatmap drawing using D3.js
- - (Front-end : react.js && D3.js integration) && (Back-end : node.js && express.js && MongoDB)
+ - (Front-end : react.js && D3.js && Flourish && Material UI && SVG integration) && (Back-end : node.js && express.js && MongoDB && Postman)
+ - website demo video shooting
  - Data preprocessing : python pandas https://colab.research.google.com/drive/1HnLGZdriaiNi9juI7g-VdcquSlBKkpgR
 ```
 ### 2. lvvv-318 (LV Zhiyuan)
