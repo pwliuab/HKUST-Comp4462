@@ -6,7 +6,7 @@
 ```
  - Email: pwliuab@connect.ust.hk
  - Github: pwliuab
- - Dev ID: Paul_branch
+ - Branch_name: fron-end&&back-end-code 
  - Responsible for web construction including backend and frontend.
  - Heatmap drawing using D3.js
  - (Front-end : react.js && D3.js && Flourish && Material UI && SVG integration) && (Back-end : node.js && express.js && MongoDB && Postman)
@@ -50,8 +50,8 @@
 ```
 ### directory:
 ```
-- front-end : Paul_branch -> comp4462-app [ commmand: npm install -> npm start ] 
-- back-end : Paul_branch -> comp4462-server node.js -> get csv files -> send json back to client side [ support get post and put ]
+- front-end : front-end&&back-end-code -> comp4462-app [ commmand: npm install -> npm start ] 
+- back-end : front-end&&back-end-code -> comp4462-server node.js -> get csv files -> send json back to client side [ support get post and put ]
 - database : mongo db {we have setted it up , it can be used if deployment is needed}
 ```
 ### Task todo before 01/11
@@ -66,13 +66,13 @@
 - [x] data visualization of heatMap
 - [x] data visualization of race bar chart
 - [x] data visualization of parallel chart
-- [ ] Documentation of coding  
+- [x] Documentation of coding  
 ### Task todo before 29 / 11
 - [x] ppt preparation
 - [x] presentation rehearsal
 ### Task todo before 03 / 12
 - [x] video filming 
-- [ ] coding collection
+- [x] coding collection
 - [x] system documentation
 - [x] system adjustment
 - [x] backend handling
