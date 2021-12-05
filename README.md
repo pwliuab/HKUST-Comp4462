@@ -6,7 +6,7 @@
 ```
  - Email: pwliuab@connect.ust.hk
  - Github: pwliuab
- - Branch_name: fron-end&&back-end-code 
+ - Branch_name: front-end&&back-end-code 
  - Responsible for web construction including backend and frontend.
  - Heatmap drawing using D3.js
  - (Front-end : react.js && D3.js && Flourish && Material UI && SVG integration) && (Back-end : node.js && express.js && MongoDB && Postman)
